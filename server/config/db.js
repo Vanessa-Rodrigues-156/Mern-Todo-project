@@ -1,17 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-const db = process.env.MONGO_URI;
+//MONGO_URI = "mongodb+srv://ClusterV1:dbv@clusterv1.pzzsidx.mongodb.net/?retryWrites=true&w=majority";
+//const db = process.env.MONGO_URI;
 
 const connectDB = async () => {
-    try {
-        await mongoose.connect(db, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        }).then(console.log("MongoDB is connected"));
-    } catch (error) {
-        console.error(error.message);
-        process.exit(1);
-    }
-}
+  try {
+    await mongoose
+      .connect(
+        "mongodb+srv://ClusterV1:dbv@clusterv1.pzzsidx.mongodb.net/?retryWrites=true&w=majority", // this was done so as to avoid syntax error.
+        {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        }
+      )
+      .then(console.log("MongoDB is connected"));
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
+};
 
 module.exports = connectDB;
